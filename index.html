@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            width: 100%;
+            --scroll: 0;
+        }
+
+        .wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg);
+        }
+
+        .image-wrapper {
+            width: 50%;
+            z-index: 1;
+        }
+
+        .text-wrapper {
+            flex: 1;
+            z-index: 1;
+        }
+
+        .text {
+            width: 65%;
+            margin-top: calc((var(--scroll) - var(--pos)*var(--height))*-0.5px);
+        }
+
+        .title {
+            font-size: 42pt;
+            font-weight: bold;
+            /* font-style: italic; */
+            font-family: 'Lora', serif;
+            margin: 0;
+        }
+
+        .description {
+            font-family: 'Poppins';
+            font-weight: 600;
+            letter-spacing: 3px;
+            font-size: 16pt;
+            color: var(--text);
+            /* margin-top: 5px; */
+        }
+
+        .wrapper p {
+            font-family: 'Poppins';
+            text-align: justify;
+        }
+
+        .tags {
+            font-family: 'Poppins';
+            font-weight: 500;
+            font-size: 12pt;
+            color: var(--text);
+            margin-bottom: 0;
+        }
+
+        .buttons {
+            display: flex;
+            width: max-content;
+            margin-top: 30px;
+        }
+
+        .buttons a {
+            display: flex;
+            width: fit-content;
+            height: 45px;
+            border-radius: 10px;
+            background-color: white;
+            color: var(--text);
+            text-align: center;
+            line-height: 45px;
+            font-weight: 500;
+            font-family: 'Poppins';
+            font-size: 11pt;
+            outline: 2px solid var(--text);
+            box-shadow: 0 3px 0 2px var(--text);
+            margin-right: 24px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+
+        .buttons a:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 2px var(--text);
+        }
+
+        .buttons a > i {
+            margin-right: 15px;
+            font-size: 14pt;
+        }
+
+        .images {
+            position: relative;
+        }
+
+        .images img {
+            --speed: 0.1;
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            top: 50%;
+            bottom: 50%;
+            transform: translate(-50%, -50%);
+            margin-top: calc((var(--scroll) - var(--pos)*var(--height))*var(--speed)*-1px);
+            height: 500px;
+        }
+
+        .gbhi-images :nth-child(1) {
+            --speed: 0.1;
+            height: 400px;
+            box-shadow: 0 10px 15px #00000011;
+            border-radius: 28px;
+            transform: translate(calc(-50% - 175px), -50%);
+        }
+
+        .gbhi-images :nth-child(2) {
+            --speed: 0.3;
+            height: 500px;
+            z-index: 1;
+            box-shadow: 0 10px 15px #00000024;
+            border-radius: 36px;
+        }
+
+        .gbhi-images :nth-child(3) {
+            --speed: 0.2;
+            height: 400px;
+            box-shadow: 0 10px 15px #00000011;
+            border-radius: 28px;
+            transform: translate(calc(-50% + 175px), -50%);
+        }
+
+        @media only screen and (max-width: 1600px) {
+            .images {
+                transform: translateX(50px);
+            }
+
+            .text {
+                transform: translateX(100px);
+            }
+        }
+
+        @media only screen and (max-width: 1200px) {
+            .wrapper {
+                flex-direction: column;
+            }
+
+            .image-wrapper {
+                width: 100%;
+                height: 50%;
+            }
+
+            .text-wrapper {
+                position: absolute;
+                bottom: 100px;
+                left: 0;
+                width: 100%;
+                padding: 0 100px;
+            }
+
+            .images {
+                transform: scale(0.8);
+                height: 100%;
+            }
+
+            .text {
+                transform: none;
+                width: auto;
+                max-width: 800px;
+            }
+        }
+
+        @media only screen and (max-width: 800px) {
+            .text-wrapper {
+                bottom: 55px;
+                padding: 0 50px;
+            }
+        }
+
+        @media only screen and (max-width: 550px) {
+            .images {
+                transform: scale(0.55);
+            }
+
+            .text-wrapper {
+                padding: 0 50px;
+            }
+
+            .title {
+                font-size: 24pt;
+            }
+
+            .description {
+                font-size: 10pt;
+            }
+
+            .wrapper p {
+                font-size: 9pt;
+            }
+
+            .tags {
+                font-size: 10pt;
+            }
+
+            .buttons {
+                display: flex;
+                justify-content: space-between;
+                transform-origin: top left;
+                transform: scale(0.85);
+            }
+
+            .buttons a {
+                height: 50px;
+            }
+            
+            .background-icon {
+                display: none;
+            }
+        }
+
+        .background-icon {
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            top: 50%;
+            bottom: 50%;
+            transform: translate(-50%, -50%);
+            height: 50%;
+            z-index: 0;
+        }
+
+        .center {
+            width: 100%;
+            text-align: center;
+        }
+
+        .subheading {
+            width: 100%;
+            color: #333;
+            font-size: 20pt;
+            text-align: center;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .main {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            font-weight: normal;
+        }
+
+        .scroll {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 15pt;
+            color: black;
+            bottom: 20px;
+            left: 50%;
+            right: 50%;
+            transform: translateX(-50%);
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            opacity: 0.5;
+            cursor: pointer;
+            background-color: white;
+            width: max-content;
+        }
+
+        .arrow {
+            animation: loop 5s infinite;
+        }
+
+        @keyframes loop {
+            from {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(10px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        img, a {
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1 class="title center">Programming Portfolio</h1>
+        <h2 class="title subheading center">Chase Graham</h2>
+        <p class="scroll" onclick="window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })"><span style="font-size: 12pt; width: max-content;">PROJECT HIGHLIGHTS</span><i class="arrow ri-arrow-down-line"></i></p>
+    </div>
+    <div class="wrapper" style="--bg: #e2f5f7ff; --text: #82bebeff; --pos: 1;">
+        <div class="image-wrapper">
+            <div class="images gbhi-images">
+                <img src="gbhi-campaign.png">
+                <img src="gbhi-home.png">
+                <img src="gbhi-rewards.png">
+            </div>
+        </div>
+        <img class="background-icon" src="gbhi-bg.png">
+        <div class="text-wrapper">
+            <div class="text">
+                <h3 class="tags">MOBILE APP&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;WEBSITE&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;COMMUNITY</h3>
+                <h1 class="title">GiveBack Hawaii</h1>
+                <h2 class="description">CLIMATE ACTION FROM HOME</h2>
+                <p>The climate crisis requires immediate and collective action from everyone. Residents of Hawaii can download the GBHI app on their mobile device and fight the crisis from home. The app motivates behavioral changes by "gameifying" the process of reducing carbon emissions and allowing users to connect over legislative climate reform campaigns and environmental events like beach and river cleanups. 2nd place winner of the district 2023 Congressional App Challenge.</p>
+                <div class="buttons">
+                    <a><i class="ri-image-2-line"></i><span>Image Gallery</span></a>
+                    <a><i class="ri-external-link-line"></i><span>Visit</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper" style="--bg: #d4ffedff; --text: #70c0a0f7; --pos: 2;">
+        <div class="image-wrapper">
+            <div class="images gen-images">
+                <img src="gen-border.png" style="padding-right: 70px;">
+                <img src="gen-main.png" style="--speed: 0.2;">
+            </div>
+        </div>
+        <img class="background-icon" src="gen-bg.png">
+        <div class="text-wrapper">
+            <div class="text">
+                <h3 class="tags">RESEARCH&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;MACHINE LEARNING&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;GENETICS</h3>
+                <h1 class="title">GENN Rice Predictor</h1>
+                <h2 class="description">MACHINE LEARNING FOR GENETICS</h2>
+                <p>The climate crisis requires immediate and collective action from everyone. Residents of Hawaii can
+                    download the GBHI app on their mobile device and fight the crisis from home. The app motivates
+                    behavioral changes by "gameifying" the process of reducing carbon emissions and allowing users to
+                    connect over legislative climate reform campaigns and environmental events like beach and river
+                    cleanups. 2nd place winner of the district 2023 Congressional App Challenge.</p>
+                <div class="buttons">
+                    <a><i class="ri-image-2-line"></i><span>Image Gallery</span></a>
+                    <a><i class="ri-external-link-line"></i><span>Visit</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper" style="--bg: #fca1a1ff; --text: #e04040ff; --pos: 3;">
+        <div class="image-wrapper">
+            <div class="images octos-images">
+                <img src="octos-main.png" style="height: 550px;">
+                <img src="octos-fg.png" style="height: 550px; --speed: 0.3;">
+            </div>
+        </div>
+        <img class="background-icon" src="octos-bg.png">
+        <div class="text-wrapper">
+            <div class="text">
+                <h3 class="tags">DESKTOP APP&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;PRODUCTIVITY&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;SOFTWARE</h3>
+                <h1 class="title">Octos Engine</h1>
+                <h2 class="description">DESKTOP CUSTOMIZATION TOOLS</h2>
+                <p>The climate crisis requires immediate and collective action from everyone. Residents of Hawaii can
+                    download the GBHI app on their mobile device and fight the crisis from home. The app motivates
+                    behavioral changes by "gameifying" the process of reducing carbon emissions and allowing users to
+                    connect over legislative climate reform campaigns and environmental events like beach and river
+                    cleanups. 2nd place winner of the district 2023 Congressional App Challenge.</p>
+                <div class="buttons">
+                    <a><i class="ri-image-2-line"></i><span>Image Gallery</span></a>
+                    <a><i class="ri-external-link-line"></i><span>Visit</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper" style="--bg: #a1e5f5ff; --text: #57a6c9ff; --pos: 4;">
+        <div class="image-wrapper">
+            <div class="images harpy-images">
+                <img src="harpy-main.png" style="height: 500px;">
+                <img src="harpy-fg.png" style="height: 500px; --speed: 0.3;">
+            </div>
+        </div>
+        <img class="background-icon" src="harpy-bg.png" style="opacity: 0.5">
+        <div class="text-wrapper">
+            <div class="text">
+                <h3 class="tags">VIDEO GAME&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;MULTIPLAYER&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;PHYSICS</h3>
+                <h1 class="title">Harpy</h1>
+                <h2 class="description">TAKE TO THE SKIES</h2>
+                <p>The climate crisis requires immediate and collective action from everyone. Residents of Hawaii can
+                    download the GBHI app on their mobile device and fight the crisis from home. The app motivates
+                    behavioral changes by "gameifying" the process of reducing carbon emissions and allowing users to
+                    connect over legislative climate reform campaigns and environmental events like beach and river
+                    cleanups. 2nd place winner of the district 2023 Congressional App Challenge.</p>
+                <div class="buttons">
+                    <a><i class="ri-image-2-line"></i><span>Image Gallery</span></a>
+                    <a><i class="ri-external-link-line"></i><span>Visit</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper" style="--bg: #ffd0a0ff; --text: #d07040ff; --pos: 5;">
+        <div class="image-wrapper">
+            <div class="images vocab-images">
+                <img src="vocab-second.png" style="height: 500px;">
+                <img src="vocab-main.png" style="height: 600px; box-shadow: 0 10px 15px #00000024; border-radius: 25px; --speed: 0.3;">
+            </div>
+        </div>
+        <img class="background-icon" src="vocab-bg.png" style="opacity: 0.5">
+        <div class="text-wrapper">
+            <div class="text">
+                <h3 class="tags">MOBILE APP&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;WORD GAME&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;MULTIPLAYER</h3>
+                <h1 class="title">Vocabulum</h1>
+                <h2 class="description">LETTER BY LETTER</h2>
+                <p>The climate crisis requires immediate and collective action from everyone. Residents of Hawaii can
+                    download the GBHI app on their mobile device and fight the crisis from home. The app motivates
+                    behavioral changes by "gameifying" the process of reducing carbon emissions and allowing users to
+                    connect over legislative climate reform campaigns and environmental events like beach and river
+                    cleanups. 2nd place winner of the district 2023 Congressional App Challenge.</p>
+                <div class="buttons">
+                    <a><i class="ri-image-2-line"></i><span>Image Gallery</span></a>
+                    <a><i class="ri-external-link-line"></i><span>Visit</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.body.style.setProperty("--height", window.innerHeight);
+        document.addEventListener("scroll", (e) => document.body.style.setProperty("--scroll", window.pageYOffset));
+        for (var el of document.body.querySelectorAll("img")) el.setAttribute("draggable", false);
+    </script>
+</body>
+</html>
