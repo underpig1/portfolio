@@ -161,6 +161,29 @@
             }
         }
 
+        @media only screen and (max-height: 900px) {
+            .title {
+                font-size: 24pt;
+            }
+
+            .description {
+                font-size: 10pt;
+            }
+
+            .wrapper p {
+                font-size: 9pt;
+            }
+
+            .tags {
+                font-size: 10pt;
+            }
+
+            .image-wrapper {
+                transform-origin: left left;
+                transform: scale(0.8);
+            }
+        }
+
         @media only screen and (max-width: 1200px) {
             .wrapper {
                 flex-direction: column;
@@ -281,16 +304,15 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             font-size: 15pt;
-            color: black;
+            color: #333;
             bottom: 20px;
             left: 50%;
             right: 50%;
             transform: translateX(-50%);
             font-family: 'Poppins', sans-serif;
-            font-weight: bold;
-            opacity: 0.5;
+            font-weight: 600;
             cursor: pointer;
             background-color: white;
             width: max-content;
@@ -298,6 +320,7 @@
 
         .arrow {
             animation: loop 5s infinite;
+            font-size: 12pt;
         }
 
         @keyframes loop {
@@ -315,13 +338,65 @@
         img, a {
             user-select: none;
         }
+
+        .preview {
+            position: relative;
+            font-family: 'Poppins';
+            font-weight: 500;
+            font-size: 12pt;
+            width: 450px;
+            text-align: center;
+            color: #333;
+            font-style: italic;
+            --border-color: gray;
+            color: var(--border-color);
+            padding: 15px;
+            --offset: 0;
+            --hang-size: 15px;
+        }
+
+        .preview::before {
+            position: absolute;
+            top: 0;
+            display: block;
+            content: "";
+            height: 100%;
+            width: 2px;
+            left: var(--offset);
+            background-color: var(--border-color);
+        }
+
+        .preview::after {
+            position: absolute;
+            display: block;
+            content: "";
+            height: 100%;
+            width: 2px;
+            top: 0;
+            right: var(--offset);
+            background-color: var(--border-color);
+        }
+
+        .dash {
+            display: block;
+            position: absolute;
+            width: var(--hang-size);
+            height: 2px;
+            background-color: var(--border-color);
+        }
     </style>
 </head>
 <body>
     <div class="main">
         <h1 class="title center">Programming Portfolio</h1>
-        <h2 class="title subheading center">Chase Graham</h2>
-        <p class="scroll" onclick="window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })"><span style="font-size: 12pt; width: max-content;">PROJECT HIGHLIGHTS</span><i class="arrow ri-arrow-down-line"></i></p>
+        <p class="preview">
+            <span class="dash" style="left: var(--offset); top: 0;"></span>
+            <span class="dash" style="right: var(--offset); top: 0;"></span>
+            <span class="dash" style="left: var(--offset); bottom: 0;"></span>
+            <span class="dash" style="right: var(--offset); bottom: 0;"></span>
+            A brief collection of highlights from my personal programming adventures. Developed with a variety of self-taught programming languages, including Python, JavaScript, and C++</p>
+        <h2 class="title subheading center">Chase P Graham</h2>
+        <p class="scroll" onclick="window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })"><span style="font-size: 12pt; width: max-content;">EXPLORE</span><i class="arrow ri-arrow-down-line"></i></p>
     </div>
     <div class="wrapper" style="--bg: #e2f5f7ff; --text: #82bebeff; --pos: 1;">
         <div class="image-wrapper">
@@ -423,8 +498,8 @@
     <div class="wrapper" style="--bg: #ffd0a0ff; --text: #d07040ff; --pos: 5;">
         <div class="image-wrapper">
             <div class="images vocab-images">
-                <img src="vocab-second.png" style="height: 500px;">
-                <img src="vocab-main.png" style="height: 600px; box-shadow: 0 10px 15px #00000024; border-radius: 25px; --speed: 0.3;">
+                <img src="vocab-second.png" style="height: 450px;">
+                <img src="vocab-main.png" style="height: 550px; box-shadow: 0 10px 15px #00000024; border-radius: 25px; --speed: 0.3;">
             </div>
         </div>
         <img class="background-icon" src="vocab-bg.png" style="opacity: 0.5">
@@ -446,7 +521,8 @@
         </div>
     </div>
     <script>
-        document.body.style.setProperty("--height", window.innerHeight);
+        window.onresize = (() => document.body.style.setProperty("--height", window.innerHeight));
+        window.onresize();
         document.addEventListener("scroll", (e) => document.body.style.setProperty("--scroll", window.pageYOffset));
         for (var el of document.body.querySelectorAll("img")) el.setAttribute("draggable", false);
     </script>
