@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             margin: 0;
             width: 100%;
             --scroll: 0;
@@ -99,6 +103,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 24px;
+            text-decoration: none !important;
         }
 
         .buttons a:active {
@@ -106,7 +111,7 @@
             box-shadow: 0 1px 0 2px var(--text);
         }
 
-        .buttons a > i {
+        .buttons a>i {
             margin-right: 15px;
             font-size: 14pt;
         }
@@ -256,7 +261,7 @@
             .buttons a {
                 height: 50px;
             }
-            
+
             .background-icon {
                 display: none;
             }
@@ -327,15 +332,18 @@
             from {
                 transform: translateY(0);
             }
+
             50% {
                 transform: translateY(10px);
             }
+
             to {
                 transform: translateY(0);
             }
         }
 
-        img, a {
+        img,
+        a {
             user-select: none;
         }
 
@@ -384,8 +392,106 @@
             height: 2px;
             background-color: var(--border-color);
         }
+
+        .footer {
+            font-family: 'Poppins', sans-serif;
+            color: #00000096;
+            text-align: center;
+            min-height: 30px;
+            line-height: 15px;
+            padding: 10px;
+            font-weight: normal;
+            font-size: 11pt;
+            height: fit-content;
+            background-color: #fde5cd;
+        }
+
+        #modal {
+            position: fixed;
+            background-color: #00000011;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            width: 100%;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            --border: 50px;
+        }
+
+        #modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        #modal .modal {
+            position: absolute;
+            display: none;
+            transform: scale(0.9);
+            transition: transform 0.2s;
+            margin: var(--border);
+            width: calc(100% - var(--border)*2);
+            height: calc(100% - var(--border)*2);
+            background: white;
+            box-shadow: 0 15px 15px #00000011;
+            padding: 50px;
+        }
+
+        #modal .modal.active {
+            display: block;
+        }
+
+        #modal.active .modal {
+            transform: none;
+        }
+
+        #modal .exit {
+            position: absolute;
+            right: var(--border);
+            top: var(--border);
+            z-index: 101;
+            font-size: 16pt;
+            width: 55px;
+            height: 45px;
+            text-align: center;
+            line-height: 45px;
+            background: none;
+            transition: background 0.1s;
+            cursor: pointer;
+        }
+
+        #modal .exit:hover {
+            background: #00000005;
+        }
+
+        .modal h1 {
+            font-size: 32pt;
+            font-weight: bold;
+            font-family: 'Lora', serif;
+            margin-bottom: 25px;
+        }
+
+        .modal .gallery-container {
+            width: 100%;
+            height: calc(100% - 75px);
+            display: grid;
+            gap: 5px;
+            overflow-y: auto;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto auto auto;
+            /* padding: 50px; */
+        }
+
+        .gallery-container img {
+            width: 420px;
+            max-height: 100%;
+            max-width: 100%;
+            box-shadow: 0 15px 15px #00000011;
+        }
     </style>
 </head>
+
 <body>
     <div class="main">
         <h1 class="title center">Programming Portfolio</h1>
@@ -394,9 +500,12 @@
             <span class="dash" style="right: var(--offset); top: 0;"></span>
             <span class="dash" style="left: var(--offset); bottom: 0;"></span>
             <span class="dash" style="right: var(--offset); bottom: 0;"></span>
-            A brief collection of highlights from my personal programming adventures. Developed with a variety of self-taught programming languages, including Python, JavaScript, and C++</p>
+            A brief collection of highlights from my personal programming adventures! Developed with a variety of
+            self-taught programming languages, including Python, JavaScript, and C++
+        </p>
         <h2 class="title subheading center">Chase P Graham</h2>
-        <p class="scroll" onclick="window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })"><span style="font-size: 12pt; width: max-content;">EXPLORE</span><i class="arrow ri-arrow-down-line"></i></p>
+        <p class="scroll" onclick="window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })"><span
+                style="font-size: 12pt; width: max-content;">EXPLORE</span><i class="arrow ri-arrow-down-line"></i></p>
     </div>
     <div class="wrapper" style="--bg: #e2f5f7ff; --text: #82bebeff; --pos: 1;">
         <div class="image-wrapper">
@@ -409,13 +518,21 @@
         <img class="background-icon" src="gbhi-bg.png">
         <div class="text-wrapper">
             <div class="text">
-                <h3 class="tags">MOBILE APP&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;WEBSITE&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;COMMUNITY</h3>
+                <h3 class="tags">MOBILE
+                    APP&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;WEBSITE&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;COMMUNITY</h3>
                 <h1 class="title">GiveBack Hawaii</h1>
                 <h2 class="description">CLIMATE ACTION FROM HOME</h2>
-                <p>The climate crisis requires immediate and collective action from everyone. Residents of Hawaii can download the GBHI app on their mobile device and fight the crisis from home. The app motivates behavioral changes by "gameifying" the process of reducing carbon emissions and allowing users to connect over legislative climate reform campaigns and environmental events like beach and river cleanups. 2nd place winner of the district 2023 Congressional App Challenge.</p>
+                <p>Frustrated with the lack of attention the issue was receiving, I developed this mobile app to urge climate action in my
+                home state of Hawaii for the 2022 Congressional App Challenge.
+                Users can contribute to the fight against climate change in a variety of ways with the app: they can participate in
+                community campaigns to reduce their energy consumption, join public events like beach cleanups, and learn more about
+                ways they can minimize their carbon emissions. When users reduce their home's energy consumption or complete a campaign,
+                they are awarded points that can be redeemed for fun climate-related prizes like recyclable water bottles, funded by
+                in-app advertisements. The app won 2nd place in my district's Congressional App Challenge.</p>
                 <div class="buttons">
-                    <a><i class="ri-image-2-line"></i><span>Image Gallery</span></a>
-                    <a><i class="ri-external-link-line"></i><span>Visit</span></a>
+                    <a href="https://youtu.be/9J2ziEV87SQ"><i class="ri-video-line"></i><span>Watch contest
+                            submission</span></a>
+                    <!-- <a><i class="ri-code-s-slash-line"></i><span>GitHub</span></a> -->
                 </div>
             </div>
         </div>
@@ -430,42 +547,47 @@
         <img class="background-icon" src="gen-bg.png">
         <div class="text-wrapper">
             <div class="text">
-                <h3 class="tags">RESEARCH&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;MACHINE LEARNING&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;GENETICS</h3>
+                <h3 class="tags">RESEARCH&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;MACHINE
+                    LEARNING&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;GENETICS</h3>
                 <h1 class="title">GENN Rice Predictor</h1>
                 <h2 class="description">MACHINE LEARNING FOR GENETICS</h2>
-                <p>The climate crisis requires immediate and collective action from everyone. Residents of Hawaii can
-                    download the GBHI app on their mobile device and fight the crisis from home. The app motivates
-                    behavioral changes by "gameifying" the process of reducing carbon emissions and allowing users to
-                    connect over legislative climate reform campaigns and environmental events like beach and river
-                    cleanups. 2nd place winner of the district 2023 Congressional App Challenge.</p>
+                <p>GENN Rice is machine learning software I developed as part of a team working on a summer research project under a
+                competitive grant program. Our goal was to use machine learning to predict an organism's expressed traits from its
+                genetic makeup. This software uses three types of machine learning models to predict 12 quantitative agronomic traits from DNA strands in rice samples. The
+                    details of GENN are included in a research paper pending publication.</p>
                 <div class="buttons">
-                    <a><i class="ri-image-2-line"></i><span>Image Gallery</span></a>
-                    <a><i class="ri-external-link-line"></i><span>Visit</span></a>
+                    <a href="https://github.com/cpg2401/genominator"><i
+                            class="ri-code-s-slash-line"></i><span>GitHub</span></a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="wrapper" style="--bg: #fca1a1ff; --text: #e04040ff; --pos: 3;">
+    <div class="wrapper" style="--bg: #ecb5b5; --text: #e04040ff; --pos: 3;">
         <div class="image-wrapper">
             <div class="images octos-images">
-                <img src="octos-main.png" style="height: 550px;">
+                <img src="octos-main.png" style="height: 500px;">
                 <img src="octos-fg.png" style="height: 550px; --speed: 0.3;">
             </div>
         </div>
-        <img class="background-icon" src="octos-bg.png">
+        <img class="background-icon" src="octos-bg.png" style="opacity: 0.5;">
         <div class="text-wrapper">
             <div class="text">
-                <h3 class="tags">DESKTOP APP&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;PRODUCTIVITY&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;SOFTWARE</h3>
+                <h3 class="tags">DESKTOP
+                    APP&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;PRODUCTIVITY&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;SOFTWARE
+                </h3>
                 <h1 class="title">Octos Engine</h1>
                 <h2 class="description">DESKTOP CUSTOMIZATION TOOLS</h2>
-                <p>The climate crisis requires immediate and collective action from everyone. Residents of Hawaii can
-                    download the GBHI app on their mobile device and fight the crisis from home. The app motivates
-                    behavioral changes by "gameifying" the process of reducing carbon emissions and allowing users to
-                    connect over legislative climate reform campaigns and environmental events like beach and river
-                    cleanups. 2nd place winner of the district 2023 Congressional App Challenge.</p>
+                <p>I created Octos to solve a very specific problem I had: my desktop wallpaper was boring. Octos Engine allows users to customize their desktop background with animated, interactive scenes
+                    and informative widgets, including stock market performance, the current date and time, and
+                    reminders. Octos provides users with an API to quickly develop their own personal desktop, either by
+                    coding one with HTML or by using the desktop editor. Users can then share their creations to the
+                    module library, where other users from around the world can download their creations. This tool has received notable recognition, currently has over 500 beta version downloads,
+                    and is set to be available for public release in the near future.
+                </p>
                 <div class="buttons">
-                    <a><i class="ri-image-2-line"></i><span>Image Gallery</span></a>
-                    <a><i class="ri-external-link-line"></i><span>Visit</span></a>
+                    <a href="https://youtu.be/TkItHoxs52Y"><i class="ri-video-line"></i><span>Watch demo</span></a>
+                    <a href="https://underpig1.github.io/octos/docs/"><i
+                            class="ri-external-link-line"></i><span>Website</span></a>
                 </div>
             </div>
         </div>
@@ -480,17 +602,21 @@
         <img class="background-icon" src="harpy-bg.png" style="opacity: 0.5">
         <div class="text-wrapper">
             <div class="text">
-                <h3 class="tags">VIDEO GAME&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;MULTIPLAYER&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;PHYSICS</h3>
+                <h3 class="tags">VIDEO
+                    GAME&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;MULTIPLAYER&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;PHYSICS
+                </h3>
                 <h1 class="title">Harpy</h1>
                 <h2 class="description">TAKE TO THE SKIES</h2>
-                <p>The climate crisis requires immediate and collective action from everyone. Residents of Hawaii can
-                    download the GBHI app on their mobile device and fight the crisis from home. The app motivates
-                    behavioral changes by "gameifying" the process of reducing carbon emissions and allowing users to
-                    connect over legislative climate reform campaigns and environmental events like beach and river
-                    cleanups. 2nd place winner of the district 2023 Congressional App Challenge.</p>
+                <p>My goal for this project was originally to experiment and play around with terrain generation algorithms, but let's be
+                honest, what's the point if I can't explore it from a little cartoon biplane? After that thought, my adventure into
+                procedural mesh generation evolved into creating a fully functional 3D multiplayer flight simulator. In Free Flight, players can
+                explore an infinite chunk-based procedural terrain that features a handful of different biomes, including beaches,
+                tropical islands, hills, grasslands, and snow-capped mountain ranges. In Dogfight, players can compete against each
+                other in playful aircraft battles through a local Wi-Fi connection in one of four enclosed arenas.</p>
                 <div class="buttons">
-                    <a><i class="ri-image-2-line"></i><span>Image Gallery</span></a>
-                    <a><i class="ri-external-link-line"></i><span>Visit</span></a>
+                    <a href="https://youtu.be/Md67uhW32EY"><i class="ri-video-line"></i><span>Watch demo</span></a>
+                    <a href="https://github.com/underpig1/harpy"><i
+                            class="ri-code-s-slash-line"></i><span>GitHub</span></a>
                 </div>
             </div>
         </div>
@@ -499,25 +625,62 @@
         <div class="image-wrapper">
             <div class="images vocab-images">
                 <img src="vocab-second.png" style="height: 450px;">
-                <img src="vocab-main.png" style="height: 550px; box-shadow: 0 10px 15px #00000024; border-radius: 25px; --speed: 0.3;">
+                <img src="vocab-main.png"
+                    style="height: 550px; box-shadow: 0 10px 15px #00000024; border-radius: 25px; --speed: 0.3;">
             </div>
         </div>
         <img class="background-icon" src="vocab-bg.png" style="opacity: 0.5">
         <div class="text-wrapper">
             <div class="text">
-                <h3 class="tags">MOBILE APP&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;WORD GAME&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;MULTIPLAYER</h3>
+                <h3 class="tags">MOBILE APP&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;WORD
+                    GAME&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;MULTIPLAYER</h3>
                 <h1 class="title">Vocabulum</h1>
                 <h2 class="description">LETTER BY LETTER</h2>
-                <p>The climate crisis requires immediate and collective action from everyone. Residents of Hawaii can
-                    download the GBHI app on their mobile device and fight the crisis from home. The app motivates
-                    behavioral changes by "gameifying" the process of reducing carbon emissions and allowing users to
-                    connect over legislative climate reform campaigns and environmental events like beach and river
-                    cleanups. 2nd place winner of the district 2023 Congressional App Challenge.</p>
+                <p>I've always loved word games, so it's only fitting that I decided to create my own. Vocabulum is a
+                    rapid-fire mobile vocab game that requires speed, agility, and word knowledge. Players can compete
+                    against each other online to sharpen their skills and earn rewards, or they can just play solo
+                    against the clock. Players can participate in a handful of competitive game modes, including classic
+                    mode, online versus, masters mode, and daily versus. They can also earn fun rewards to commemorate
+                    their victories, including trophies and customization items.</p>
                 <div class="buttons">
-                    <a><i class="ri-image-2-line"></i><span>Image Gallery</span></a>
-                    <a><i class="ri-external-link-line"></i><span>Visit</span></a>
+                    <a href="https://youtube.com/shorts/XbW99XyHa1U?feature=share"><i
+                            class="ri-video-line"></i><span>Watch demo</span></a>
+                    <!-- <a onclick="openModal('gallery-vocab')"><i class="ri-image-2-line"></i><span>Image Gallery</span></a> -->
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="footer" style="--bg: #ffd0a0ff;">
+        <p>This website and all content portrayed on this website were created entirely by me, Chase Graham, unless
+            otherwise specified. Thanks for reading my high school programming portfolio!</p>
+    </div>
+    <div id="modal">
+        <i onclick="closeModal()" class="exit ri-close-line"></i>
+        <div class="modal active" id="gallery-gbhi" style="background: #e2f5f7ff">
+            <h1 class="title">GiveBack Hawaii</h1>
+            <div class="gallery-container">
+                <img src="gbhi-home.png"
+                    style="max-height: 450px; box-shadow: 0 10px 15px #00000024; border-radius: 36px;"></img>
+            </div>
+        </div>
+        <div class="modal" id="gallery-gen">
+        </div>
+        <div class="modal" id="gallery-octos">
+        </div>
+        <div class="modal" id="gallery-harpy">
+            <h1 class="title">Image Gallery</h1>
+            <div class="gallery-container">
+                <img src="gallery/beach.jpg"></img>
+                <img src="gallery/caldera.jpg"></img>
+                <img src="gallery/grass.jpg"></img>
+                <img src="gallery/home.png"></img>
+                <img src="gallery/island.jpg"></img>
+                <img src="gallery/map1.jpg"></img>
+                <img src="gallery/map2.jpg"></img>
+                <img src="gallery/snow.jpg"></img>
+            </div>
+        </div>
+        <div class="modal" id="gallery-vocab">
         </div>
     </div>
     <script>
@@ -525,6 +688,24 @@
         window.onresize();
         document.addEventListener("scroll", (e) => document.body.style.setProperty("--scroll", window.pageYOffset));
         for (var el of document.body.querySelectorAll("img")) el.setAttribute("draggable", false);
+
+        const modal = document.getElementById("modal");
+        modal.onclick = (e) => {
+            if (e.target == modal) closeModal();
+        }
+
+        function closeModal() {
+            modal.classList.remove("active");
+        }
+
+        function openModal(id) {
+            for (var m of modal.childNodes) {
+                if (m.classList) m.classList.remove("active");
+            }
+            modal.querySelector("#" + id).classList.add("active");
+            modal.classList.add("active");
+        }
     </script>
 </body>
+
 </html>
